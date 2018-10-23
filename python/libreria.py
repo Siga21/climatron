@@ -6,7 +6,7 @@ import sqlite3
 # ejecuta consultas sqlite3 sobre una base y devuelve array de registros 
 def run_query(query):
 
-    conn = sqlite3.connect('/home/ventas/peregrinos/peregrinos/db.sqlite3')
+    conn = sqlite3.connect('/home/jroca72/peregrinos/peregrinos/db.sqlite3')
     cursor = conn.cursor()
     cursor.execute(query)
 
