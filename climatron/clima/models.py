@@ -49,12 +49,12 @@ class sensor(models.Model):
 	class Meta:
 		verbose_name_plural = "Sensores"
 
-	def __unicoe__(self):
+	def __unicode__(self):
 		return self.nombre_sensor
 
 # historico --------------------------------------------------------
 class historico(models.Model):
-	fecha = models.DateField(default=datetime.now, blank=True)
+	fecha = models.DateTimeField(default=datetime.now, blank=True)
 	sensor = models.ForeignKey(sensor, default=None, null=False, blank=False)
 	temperatura = models.DecimalField(max_digits=5, decimal_places=2)
 
@@ -62,13 +62,19 @@ class historico(models.Model):
 		verbose_name_plural = "Historico"
 
 	def __unicode__(self):
-		return self.fecha
+		return self.sensor.nombre_sensor  
 
 # calendario -------------------------------------------------------
 class calendario(models.Model):
-	fecha = models.DateField(default=datetime.now, blank= True)
+	fecha = models.DateTimeField(default=datetime.now, blank= False)
 	sensor = models.ForeignKey(sensor, default=None, null=False, blank=False)
 	modo = models.ForeignKey(modo, default=None, null=False, blank=False)
+
+	class Meta:
+		verbose_name_plural = "Calendario"
+
+	def __unicode__(self):
+		return self.sensor.nombre_sensor 
 
  
 
