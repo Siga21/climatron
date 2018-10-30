@@ -33,7 +33,7 @@
    		 </ul>
 		</div>  
 	</nav>
-	<div class="container-fluid">
+	<div class="container-fluid bg-dark text-white">
 		<row>
 			<div class="col-md-12">
 				<h1 class="h1 h1-primary text-center">Climatron<small>{% block titulo %} {%endblock %}</small></h1>
@@ -42,9 +42,20 @@
 
 		{% block content %} {% endblock %}
 	</div>
-<div id="footer" class="container-fluid" style="width:100%; height:200px;bottom:0; background-color:#eee;">
-<br/>
-<p class="text-muted">Siga XXI</p>
+	
+	<div class="container-fluid bg-dark text-white">
+		<row>
+			<div class="col-md-12" >
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<p class="text-muted">Siga XXI</p>
+					</div>
+					<div if ="panel-body">
+					</div>
+				</div>
+			</div>
+		</row>
+	</div>
 
 </div>
 <!--- -->

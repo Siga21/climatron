@@ -15,11 +15,15 @@ class HistoricoAdmin(admin.ModelAdmin):
    list_filter = ('fecha','sensor')
    ordering = ('fecha', 'sensor')
 
+class CalendarioAdmin(admin.ModelAdmin):
+	list_display = ('fecha','sensor', 'modo')
+	list_filter = ('fecha', 'sensor')
+	ordering = ('fecha', 'sensor') 
 
 admin.site.register(tipo_sensor)
 admin.site.register(planta)
 admin.site.register(modo)
 admin.site.register(sensor, SensorAdmin)
 admin.site.register(historico, HistoricoAdmin)
-admin.site.register(calendario)
+admin.site.register(calendario, CalendarioAdmin)
 
