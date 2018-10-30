@@ -8,6 +8,12 @@ from django.template import RequestContext
 from datetime import datetime, timedelta
 from django.utils import timezone
 
+from clima.models import sensor, sensor_instalacion 
+
 # Create your views here.
 def home(request):
-	return render(request, 'clima/home.html')
+
+	sensores = sensor.objects.order_by('planta')
+	instalacion = sensor_instalacion.objects.order_by('tipo_sensor')
+	context = {'los_sensores': sensores , 'las_instalaciones' : instalacion}
+	return render(request, 'clima/home.html', context)

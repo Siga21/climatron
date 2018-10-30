@@ -45,6 +45,7 @@ class sensor(models.Model):
 	tb = models.DecimalField(max_digits=5, decimal_places=2)
 	tn = models.DecimalField(max_digits=5, decimal_places=2)
 	tc = models.DecimalField(max_digits=5, decimal_places=2)
+	ultima_temperatura = models.DecimalField(max_digits=5, decimal_places=2, default=0)
 
 	class Meta:
 		verbose_name_plural = "Sensores"
@@ -77,6 +78,26 @@ class calendario(models.Model):
 		return self.sensor.nombre_sensor 
 
  
+# estado ----------------------------------------------------------
+class estado(models.Model):
+	codigo = models.IntegerField(default=0)
+	nombre_estado = models.CharField(max_length=100)
+	
+	class Meta:
+		verbose_name_plural = "Estados"
 
+	def __unicode__(self):
+		return self.nombre_estado
 
+# sensores instalacion   ------------------------------------------
+class sensor_instalacion(models.Model):
+	nombre_sensor = models.CharField(max_length=100)
+	tipo_sensor = models.ForeignKey(tipo_sensor, default=None, null=False, blank=False)
+	estado = models.ForeignKey(estado, default=None, null=False, blank=False)
 
+	class Meta:
+		verbose_name_plural = "Sensores instalación"
+
+	def __unicode__(self):
+		return self.nombre_sensor
+	
