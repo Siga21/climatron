@@ -2,6 +2,10 @@
 {%   load   staticfiles   %}
 
 {% block elcss %}
+<script src="{% static 'js/raphael-2.1.4.min.js' %}"></script>
+<script src="{% static 'js/justgage.js' %}"></script>
+<script src="{% static 'js/javier.js' %}"></script>
+<link href="{% static 'css/gauge.css' %}" rel="stylesheet">
 {% endblock %}
 {% block titulo %} Control {% endblock %}
 {% block content %}
@@ -26,12 +30,15 @@
     	<br />
     	{% if los_sensores %}
              <div class="table-responsive">
-                <table class="table table-striped">
+                <table class="table table-striped table-light text-dark">
+                	<th></th>
                   <th>Nombre</th>
                   <th>Planta</th>
                   <th>Temperatura real</th>
                   {% for sensor in los_sensores %}
                     <tr>
+                    		<td><div class="termometro" id="{{ sensor.nombre_sensor }}" ></div></td>
+                    		<script type="text/javascript"> poner("{{ sensor.nombre_sensor }}",{{ sensor.ultima_temperatura }});</script>
                         <td>{{ sensor.nombre_sensor }}</td>
                         <td>{{ sensor.planta }}</td>
                         <td>{{ sensor.ultima_temperatura }}</td>    
