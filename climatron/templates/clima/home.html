@@ -8,12 +8,18 @@
 <br /><br />
 <div class="row">
 	<div class="col-md-3 col-lg-3">
-	   {% for instalacion in las_instalaciones %}
-		{% if 1 == instalacion.codigo %}
-            		<a href="#" class="btn btn-primary btn-lg btn-block">{{ instalacion.nombre_sensor }}</a>
-            	{% endif %}
+		{% for instalacion in las_instalaciones %}
+			{% if instalacion.estado.codigo  == 1 %}
+            			<a href="#" class="btn btn-success btn-lg btn-block">{{ instalacion.nombre_sensor }}</a>
+       			{% endif %}
+			{% if instalacion.estado.codigo  == 2 %}
+            			<a href="#" class="btn btn-secondary btn-lg btn-block">{{ instalacion.nombre_sensor }}</a>
+            		{% endif %}
+			{% if instalacion.estado.codigo  == 0 %}
+            			<a href="#" class="btn btn-danger btn-lg btn-block">{{ instalacion.nombre_sensor }}</a>
+            		{% endif %}
      
-     	   {% endfor %}
+     	   	{% endfor %}
     </div>
     <div class="col-md-9 col-lg-9" >
     	<h1> Listado de estado </h1>
