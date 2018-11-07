@@ -7,7 +7,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.template import RequestContext
 from datetime import datetime, timedelta
 from django.utils import timezone
-
+from django.views.generic import ListView, DetailView
 from clima.models import sensor, sensor_instalacion 
 
 # Create your views here.
@@ -17,3 +17,9 @@ def home(request):
 	instalacion = sensor_instalacion.objects.order_by('tipo_sensor')
 	context = {'los_sensores': sensores , 'las_instalaciones' : instalacion}
 	return render(request, 'clima/home.html', context)
+	
+#------- detalle sensores_instalacion -------------------------
+class DetalleSensores_Instalacion(DetailView):
+    model = sensor_instalacion
+    
+#--------------------------------------------------------------    	
