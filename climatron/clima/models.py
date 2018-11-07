@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.db import models
 from datetime import datetime
 from django.core.urlresolvers import reverse
+from decimal import Decimal
 
 # Modelos.
 # tipos de sensor -------------------------------------------------
@@ -45,7 +46,8 @@ class sensor(models.Model):
 	tb = models.DecimalField(max_digits=5, decimal_places=2)
 	tn = models.DecimalField(max_digits=5, decimal_places=2)
 	tc = models.DecimalField(max_digits=5, decimal_places=2)
-	ultima_temperatura = models.DecimalField(max_digits=5, decimal_places=2, default=0)
+	ultima_temperatura = models.DecimalField(max_digits=5, decimal_places=2, default=Decimal('0.00'))
+	fecha_lectura = models.DateTimeField(default=datetime.now, blank=False)
 
 	class Meta:
 		verbose_name_plural = "Sensores"
@@ -55,7 +57,7 @@ class sensor(models.Model):
 
 # historico --------------------------------------------------------
 class historico(models.Model):
-	fecha = models.DateTimeField(default=datetime.now, blank=True)
+	fecha = models.DateTimeField(default=datetime.now, blank=False)
 	sensor = models.ForeignKey(sensor, default=None, null=False, blank=False)
 	temperatura = models.DecimalField(max_digits=5, decimal_places=2)
 
@@ -94,10 +96,28 @@ class sensor_instalacion(models.Model):
 	nombre_sensor = models.CharField(max_length=100)
 	tipo_sensor = models.ForeignKey(tipo_sensor, default=None, null=False, blank=False)
 	estado = models.ForeignKey(estado, default=None, null=False, blank=False)
+	valor = models.DecimalField(max_digits=5, decimal_places=2, default=Decimal('0.00'))
+	fecha_lectura = models.DateTimeField(default=datetime.now, blank=False)
+	puerto = models.IntegerField(default=0)
 
 	class Meta:
 		verbose_name_plural = "Sensores instalación"
 
 	def __unicode__(self):
 		return self.nombre_sensor
+		
+# historico instalaciones ------------------------------------------
+class historico_instalacion(models.Model):
+	fecha = models.DateTimeField(default=datetime.now, blank=False)
+	nombre_sensor = models.ForeignKey(sensor_instalacion, default=None, null=False, blank=False)
+	estado = models.ForeignKey(estado, default=None, null=False, blank=False)
+	valor = models.DecimalField(max_digits=5, decimal_places=2, default=Decimal('0.00'))
+	
+	class Meta:
+		verbose_name_plural = "Historicos_Sensores"
+		
+	def __unicode__(self):
+		return self.nombre_sensor
+
+					
 	
