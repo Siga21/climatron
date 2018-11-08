@@ -2,6 +2,7 @@
 # -*- coding: iso-8859-15
 
 import sqlite3
+from datetime import datetime
 from libreria import * 
 
 texto = """select nombre_sensor, clima_planta.nombre_planta 
@@ -16,6 +17,15 @@ for i in range(len(registros)):
     planta = registros[i][1]
     print "El sensor es  : " +  nombre + " Planta: " + planta 
 
+
+grados = 25.72
+
+escritura = "update clima_sensor set ultima_temperatura = "  + str(grados) + ", fecha_lectura = '" + str(datetime.now()) + "'   where id = 1"
+run_write(escritura)
+
+print "fin"
+               
+               
 
 
 

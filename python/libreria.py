@@ -17,9 +17,21 @@ def run_query(query):
 
     return data
 
-#funcion chorra para hacer prubas    
-def concatena(nombre_1, nombre_2):
-	data = nombre_1 + ',' + nombre_2
-	
-	return data
-	    
+
+# ejecuta INSERT INTO o ADD sqlite3 sobre una base y devuelve Null
+def run_write(query):
+
+    conn = sqlite3.connect('../climatron/db.sqlite3')
+    cursor = conn.cursor()
+    cursor.execute(query)
+
+    conn.commit()
+
+    conn.close()
+
+    return None 
+    
+    
+    
+
+
