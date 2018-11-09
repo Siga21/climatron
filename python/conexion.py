@@ -2,28 +2,27 @@
 # -*- coding: iso-8859-15
 
 import sqlite3
-from datetime import datetime
 from libreria import * 
 
-texto = """select nombre_sensor, clima_planta.nombre_planta 
+# bucle de los sensores de temperatura 
+texto = """select id, ip 
            from clima_sensor 
-           inner join clima_planta 
-           on clima_sensor.planta_id = clima_planta.id 
-           order by clima_sensor.planta_id"""
+           order by planta_id"""
 registros = run_query(texto)
-
 for i in range(len(registros)):
-    nombre = registros[i][0]
-    planta = registros[i][1]
-    print "El sensor es  : " +  nombre + " Planta: " + planta 
+	ide = registros[i][0]
+	ip = registros[i][1]
+   #con la ip vamos a leer el sensor y recogemos la temperatura 
+   #  grados = leer_esp8266(ip)
+	grados = 19.12  # fijo mientras no se lean sensores de verdad  			
+	actualizar_sensor(ide, grados)
+	print "Actualizado sensor : " + str(ide)
+	#grabamos registro en historico de sensores 
+	linea_historico_sensor(ide, grados)
+	print "Añadido a historico sensor : " + str(ide)	
 
-
-grados = 25.72
-
-escritura = "update clima_sensor set ultima_temperatura = "  + str(grados) + ", fecha_lectura = '" + str(datetime.now()) + "'   where id = 1"
-run_write(escritura)
-
-print "fin"
+	
+print "fin de programa..."
                
                
 
