@@ -2,7 +2,7 @@
 # -*- coding: iso-8859-15
 
 import sqlite3
-#import requests  #es necesario instalar la libreria requests
+import requests  #es necesario instalar la libreria requests
 from datetime import datetime
 
 
@@ -59,11 +59,11 @@ def linea_historico_sensor(int_id, flt_grados):
 # lee un sensor y devuelve la temperatura 
 # parametros : id del sensor     
 
-#def leer_esp8266(ip):
-#	camino = "http://" + ip  + "/Python"
-#	response = requests.get(camino)
-#	fvalor = float(response.text)      #convierto el valor de la temperatura a float otra vez
+def leer_esp8266(ip):
+	camino = "http://" + ip  + "/Python"
+	response = requests.get(camino)
+	fvalor = float(response.text)      #convierto el valor de la temperatura a float otra vez
 
-#	return fvalor
+	return fvalor
 	
 

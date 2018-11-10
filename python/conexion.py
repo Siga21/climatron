@@ -12,9 +12,9 @@ registros = run_query(texto)
 for i in range(len(registros)):
 	ide = registros[i][0]
 	ip = registros[i][1]
-   #con la ip vamos a leer el sensor y recogemos la temperatura 
-   #  grados = leer_esp8266(ip)
-	grados = 19.12  # fijo mientras no se lean sensores de verdad  			
+    #con la ip vamos a leer el sensor y recogemos la temperatura 
+	grados = leer_esp8266(ip)
+	#grados = 19.12  # fijo mientras no se lean sensores de verdad  			
 	actualizar_sensor(ide, grados)
 	print "Actualizado sensor : " + str(ide)
 	#grabamos registro en historico de sensores 
