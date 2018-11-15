@@ -7,12 +7,12 @@ from clima.models import tipo_sensor, planta, modo, sensor, historico, calendari
 from clima.models import estado, sensor_instalacion, historico_instalacion
 
 class SensorAdmin(admin.ModelAdmin):
-   list_display = ('nombre_sensor', 'tipo_sensor', 'planta', 'ip', 'tb', 'tn', 'tc', 'ultima_temperatura', 'fecha_lectura')
+   list_display = ('nombre_sensor', 'tipo_sensor', 'planta', 'ip', 'ultima_temperatura', 'humedad', 'bateria', 'lectura', 'fecha_lectura')
    list_filter = ('planta','tipo_sensor')
    ordering = ('planta', 'tipo_sensor')
 
 class HistoricoAdmin(admin.ModelAdmin):
-   list_display = ('fecha', 'sensor', 'temperatura')
+   list_display = ('fecha', 'sensor', 'temperatura','humedad', 'bateria')
    list_filter = ('fecha','sensor')
    ordering = ('fecha', 'sensor')
 

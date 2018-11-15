@@ -48,6 +48,9 @@ class sensor(models.Model):
 	tc = models.DecimalField(max_digits=5, decimal_places=2)
 	ultima_temperatura = models.DecimalField(max_digits=5, decimal_places=2, default=Decimal('0.00'))
 	fecha_lectura = models.DateTimeField(default=datetime.now, blank=False)
+	humedad = models.DecimalField(max_digits=5, decimal_places=2, default=Decimal('0.00'))
+	bateria = models.DecimalField(max_digits=5, decimal_places=2, default=Decimal('0.00'))
+	lectura = models.BooleanField(default=True)
 
 	class Meta:
 		verbose_name_plural = "Sensores"
@@ -60,6 +63,8 @@ class historico(models.Model):
 	fecha = models.DateTimeField(default=datetime.now, blank=False)
 	sensor = models.ForeignKey(sensor, default=None, null=False, blank=False)
 	temperatura = models.DecimalField(max_digits=5, decimal_places=2)
+	humedad = models.DecimalField(max_digits=5, decimal_places=2, default=Decimal('0.00'))
+	bateria = models.DecimalField(max_digits=5, decimal_places=2, default=Decimal('0.00'))
 
 	class Meta:
 		verbose_name_plural = "Historico"
